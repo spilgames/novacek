@@ -1,0 +1,14 @@
+# Do not track .swp files
+*.swp
+# MacOSX directory index files
+.DS_Store
+# Vagrant directory
+.vagrant
+Vagrantfile
+
+#ignore PYC files
+*.pyc
+
+#ignore PyCharm IDE  files
+.idea
+
