@@ -79,3 +79,9 @@ def get_tenants(session):
 def get_tenant_email(session, tid):
     keystone = get_keystoneclient(session)
     return keystone.tenants.get(tid)
+
+def show_creds():
+    credentials = get_os_credentials()
+    for cred in credentials:
+        print "export OS_" + cred.upper() + "=" + credentials[cred]
+

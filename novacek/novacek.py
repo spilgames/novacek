@@ -40,6 +40,7 @@ no_pingcheck_tenant_ids = ['']
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument('-e', '--env', help='Output the environment / credentials that will be used and exit', action='store_true', default=False)
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-H', '--hypervisor', help='FQDN of hypervisor to operate on')
     group.add_argument('-Z', '--zone',
@@ -52,6 +53,10 @@ def main():
     parser.add_argument('-f', '--format', help='Output format', choices=['noborder', 'table'], default='table')
     parser.add_argument('-c', '--columns', help='Output columns', nargs='+', choices=_columns)
     args = parser.parse_args()
+
+    if args.env:
+        auth.show_creds()
+        sys.exit(0)
 
     if not args.list and not args.maintenance:
         parser.print_usage()
