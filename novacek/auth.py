@@ -21,19 +21,17 @@ import os
 
 ### AUTH FUNCTIONS ###
 
-def get_os_credentials(filename='/etc/neutron/neutron.conf'):
+def get_os_credentials(filename='/etc/nova/nova.conf'):
     '''Attempts to get credentials from an openstack config if it exists, otherwise from env'''
     if os.path.exists(filename):
         c = ConfigParser.RawConfigParser()
-        s = 'keystone_authtoken'
+        s = 'DEFAULT'
         c.read(filename)
-        creds = {'username': c.get(s, 'admin_user'),
-                'password': c.get(s, 'admin_password'),
-                'tenant_name': c.get(s, 'admin_tenant_name'),
-                'region_name': c.get(s, 'nova_region_name'),
-                'auth_url': '{0}://{1}:{2}/v2.0'.format(c.get(s, 'auth_protocol'),
-                                                        c.get(s, 'auth_host'),
-                                                        c.get(s, 'auth_port'))}
+        creds = {'username': c.get(s, 'neutron_admin_username'),
+                'password': c.get(s, 'neutron_admin_password'),
+                'tenant_name': c.get(s, 'neutron_admin_tenant_name'),
+                'region_name': c.get(s, 'os_region_name'),
+                'auth_url': 'c.get(s, 'neutron_admin_auth_url')}
     else:
         creds = {'username': os.getenv('OS_USERNAME'),
                  'password': os.getenv('OS_PASSWORD'),
