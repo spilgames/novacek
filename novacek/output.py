@@ -20,7 +20,7 @@ from email.mime.text import MIMEText
 
 class Output:
     def __init__(self, session, _columns, hv):
-        self.s = session       
+        self.s = session
         self.c = compute.Compute(session)
         self.n = network.Network(session)
         self._columns = _columns
@@ -71,7 +71,7 @@ class Output:
 
     def print_instance_list(self, is_hv, pingcheck=False, no_pingcheck_tenant_ids=[], sort=None, format='table', columns=None):
         ''' Create prettytable from instance list '''
-        instance_list = self.create_instance_list(is_hv, pingcheck=False, no_pingcheck_tenant_ids=[], sort=None)
+        instance_list = self.create_instance_list(is_hv, pingcheck=pingcheck, no_pingcheck_tenant_ids=no_pingcheck_tenant_ids, sort=sort)
         self.make_table(instance_list, sort, format)
         if columns:
             print self.table.get_string(fields=columns)
@@ -82,7 +82,7 @@ class Output:
         for i in instance_list:
             row = []
             for col in self._columns:
-                row.append(instance_list[i][col]) 
+                row.append(instance_list[i][col])
             self.table.add_row(row)
         self.table.sortby = sort
         if format == 'noborder':
@@ -108,9 +108,9 @@ class Output:
 
     def email(self, sender, maintenance, receiver,node_table):
         message = "Maintenance notification:\n" + maintenance + "\n\nThe following machines are affected:\n" + node_table
-                        
+
         msg = MIMEText(message)
-        
+
         # me == the sender's email address
         # you == the recipient's email address
         msg['Subject'] = 'Maintenance announcement OpenStack'
