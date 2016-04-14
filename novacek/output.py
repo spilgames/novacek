@@ -37,8 +37,8 @@ class Output:
         '''Create dictionary of instances running on hypervisor(s) hv'''
         instance_list = {}
         for i in self.instances:
-            ips = ';'.join([v[0]['addr'] for k, v in i.addresses.iteritems()])
-            vlans = ';'.join([self.ports_dict[v[0]['mac_addr']]['vlan'] for k, v in i.addresses.iteritems()])
+            ips = ';'.join([v[0]['addr'] for k, v in i.addresses.iteritems() if len(v) > 0])
+            vlans = ';'.join([self.ports_dict[v[0]['mac_addr']]['vlan'] for k, v in i.addresses.iteritems() if len(v) > 0])
             host = i._info['os-extended-server-attributes:hypervisor_hostname']
             zone = i._info['os-extended-availability-zone:availability_zone']
             flavor = self.flavors_dict.get(i.flavor['id'], 'unknown')
