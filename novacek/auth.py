@@ -31,7 +31,7 @@ def get_os_credentials(filename='/etc/nova/nova.conf'):
                 'password': c.get(s, 'neutron_admin_password'),
                 'tenant_name': c.get(s, 'neutron_admin_tenant_name'),
                 'region_name': c.get(s, 'os_region_name'),
-                'auth_url': 'c.get(s, 'neutron_admin_auth_url')}
+                'auth_url': c.get(s, 'neutron_admin_auth_url')}
     else:
         creds = {'username': os.getenv('OS_USERNAME'),
                  'password': os.getenv('OS_PASSWORD'),
