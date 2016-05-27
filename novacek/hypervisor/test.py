@@ -12,7 +12,6 @@ import unittest
 import novacek.nova as nova
 import novacek.hypervisor.ovs as ovs
 import novacek.hyperbisor.libvirt_qemu as libvirt_qemu
-import novacek.
 import novacek.auth as auth
 import novacek.network as network
 
