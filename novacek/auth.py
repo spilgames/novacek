@@ -51,7 +51,7 @@ def get_keystonesession(credentials=None):
                        password=credentials['password'],
                        tenant_name=credentials['tenant_name'],
                        auth_url=credentials['auth_url'])
-    return session.Session(auth=auth, verify=False)
+    return session.Session(auth=auth)
 
 def get_keystoneclient(session):
     '''Returns keystoneclient instance'''
