@@ -1,3 +1,11 @@
+novacek-0.6.1
+-----------------
+- Use the system CA bundle for verifying SSL certs
+
+novacek-0.6.0
+-----------------
+- Made the argparse dependency optional for newer Python versions
+
 novacek-0.5.2
 -----------------
 - Fixed incorrect syntax in test file
